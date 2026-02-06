@@ -8,10 +8,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0d47a1;
-            --secondary-color: #1976d2;
-            --accent-color: #ff6f00;
-            --dark-color: #1a1a1a;
+            --primary-blue: #1a3a52;
+            --metallic-blue: #2c5f7f;
+            --light-blue: #4a7fa3;
+            --gold: #d4af37;
+            --dark-gold: #b8941f;
+            --light-gold: #f4d03f;
+            --dark-bg: #0a0a0a;
+            --navbar-black: #000000;
             --light-color: #f5f5f5;
         }
 
@@ -29,46 +33,92 @@
 
         /* Navbar */
         .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 1rem 0;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            background: var(--navbar-black) !important;
+            padding: 0.8rem 0;
+            box-shadow: 0 2px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .navbar .container-fluid {
+            padding: 0 1.5rem;
+        }
+
+        .navbar-logo-img {
+            height: 100px;
+            width: auto;
+            margin-right: 12px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
         }
 
         .navbar-brand {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            color: white !important;
-            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+            white-space: nowrap;
+        }
+
+        .navbar-brand:hover {
+            opacity: 0.9;
+        }
+
+        .navbar-toggler {
+            border: 2px solid var(--gold);
+            padding: 0.4rem 0.6rem;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(212, 175, 55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Offcanvas */
+        .offcanvas {
+            background: var(--navbar-black) !important;
+        }
+
+        .offcanvas-header {
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .offcanvas-body {
+            padding-top: 2rem;
         }
 
         .nav-link {
             color: rgba(255,255,255,0.9) !important;
-            margin: 0 0.8rem;
             transition: all 0.3s ease;
             font-weight: 500;
             font-size: 1.05rem;
+            position: relative;
         }
 
-        .nav-link:hover {
-            color: var(--accent-color) !important;
-            transform: translateY(-2px);
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--gold) !important;
         }
 
         .navbar-phone {
-            color: white;
+            color: var(--gold);
             font-weight: 600;
-            margin-left: 1rem;
         }
 
         .navbar-phone i {
-            color: var(--accent-color);
+            color: var(--light-gold);
             margin-right: 0.5rem;
         }
 
         /* Hero Section */
         .hero {
-            background-image: url('static/bodyback.jpg');
-            background-size: cover, 50px 50px;
+            background-image: url(static/bodyback.jpg);
             color: white;
             padding: 120px 0;
             text-align: center;
@@ -83,23 +133,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 111, 0, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(74, 127, 163, 0.15) 0%, transparent 50%);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255, 111, 0, 0.2);
-            color: var(--accent-color);
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            border: 2px solid var(--accent-color);
         }
 
         .hero h1 {
@@ -111,7 +151,11 @@
         }
 
         .hero h1 span {
-            color: var(--accent-color);
+            background: linear-gradient(135deg, var(--primary-blue), var(--metallic-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
         }
 
         .hero p {
@@ -124,7 +168,7 @@
         }
 
         .btn-custom {
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             color: white;
             padding: 14px 45px;
             border-radius: 50px;
@@ -132,14 +176,14 @@
             font-size: 1.1rem;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
             margin: 0 10px;
         }
 
         .btn-custom:hover {
-            background: #e65100;
+            background: linear-gradient(135deg, var(--dark-gold), var(--gold));
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 111, 0, 0.4);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
         }
 
         .btn-outline-custom {
@@ -147,7 +191,7 @@
             color: white;
             padding: 14px 45px;
             border-radius: 50px;
-            border: 2px solid white;
+            border: 2px solid var(--gold);
             font-size: 1.1rem;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -155,9 +199,10 @@
         }
 
         .btn-outline-custom:hover {
-            background: white;
-            color: var(--primary-color);
+            background: var(--gold);
+            color: var(--primary-blue);
             transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
         }
 
         /* Features Section */
@@ -175,30 +220,29 @@
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-blue), var(--metallic-blue));
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
             transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(44, 95, 127, 0.3);
         }
 
-        .feature-icon img {
-            width: 40px;
-            height: 40px;
-            filter: brightness(0) invert(1);
+        .feature-icon i {
+            color: var(--gold);
         }
 
         .feature-box:hover .feature-icon {
             transform: translateY(-10px) rotate(5deg);
-            box-shadow: 0 10px 30px rgba(13, 71, 161, 0.3);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
         }
 
         .feature-box h4 {
             font-size: 1.3rem;
             font-weight: bold;
-            color: var(--dark-color);
+            color: var(--primary-blue);
             margin-bottom: 1rem;
         }
 
@@ -220,24 +264,28 @@
 
         .section-badge {
             display: inline-block;
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             color: white;
             padding: 8px 20px;
             border-radius: 25px;
             font-weight: 600;
             margin-bottom: 1rem;
             font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .section-title h2 {
             font-size: 2.8rem;
             font-weight: bold;
-            color: var(--dark-color);
+            color: var(--primary-blue);
             margin-bottom: 1rem;
         }
 
         .section-title h2 span {
-            color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section-title p {
@@ -253,6 +301,7 @@
             padding: 50px;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 2px solid rgba(212, 175, 55, 0.1);
         }
 
         .about-content p {
@@ -279,7 +328,7 @@
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--accent-color);
+            color: var(--gold);
             font-weight: bold;
             font-size: 1.3rem;
         }
@@ -302,8 +351,8 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            border-color: var(--secondary-color);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+            border-color: var(--gold);
         }
 
         .service-image {
@@ -319,25 +368,19 @@
         .service-content h3 {
             font-size: 1.5rem;
             font-weight: bold;
-            color: var(--dark-color);
+            color: var(--primary-blue);
             margin-bottom: 1rem;
-        }
-
-        .service-link {
-            color: var(--secondary-color);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .service-link:hover {
-            color: var(--accent-color);
         }
 
         /* Clients Carousel */
         .clients-section {
             padding: 60px 0;
-            background: var(--light-color);
+            background: linear-gradient(135deg, var(--primary-blue), var(--metallic-blue));
+        }
+
+        .clients-section .section-title h2,
+        .clients-section .section-title p {
+            color: white;
         }
 
         .clients-carousel {
@@ -363,12 +406,13 @@
             border-radius: 15px;
             padding: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
         }
 
         .client-logo:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            border: 2px solid var(--gold);
         }
 
         .client-logo img {
@@ -395,44 +439,18 @@
         /* Contact Form Section */
         .contact-form-section {
             padding: 80px 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
+            background-image: url(static/fond_pie_2.png);
+            color: linear-gradient(135deg, var(--primary-blue), var(--metallic-blue));
         }
 
         .contact-form-section .section-title h2,
         .contact-form-section .section-title p {
-            color: white;
-        }
-
-        .contact-form {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .form-control {
-            background: rgba(255,255,255,0.95);
-            border: 2px solid transparent;
-            padding: 12px 20px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            background: white;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 0.2rem rgba(255, 111, 0, 0.25);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
+            color: linear-gradient(135deg, var(--primary-blue), var(--metallic-blue));
         }
 
         /* Footer */
         footer {
-            background: var(--dark-color);
+            background: var(--navbar-black);
             color: white;
             padding: 60px 0 20px;
         }
@@ -445,7 +463,10 @@
             font-size: 1.4rem;
             font-weight: bold;
             margin-bottom: 1.5rem;
-            color: white;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .footer-section ul {
@@ -465,14 +486,17 @@
         }
 
         .footer-section ul li a:hover {
-            color: var(--accent-color);
+            color: var(--gold);
             padding-left: 5px;
         }
 
         .footer-logo {
             font-size: 2.2rem;
             font-weight: bold;
-            color: white;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
             letter-spacing: 2px;
         }
@@ -486,7 +510,7 @@
             display: inline-block;
             width: 45px;
             height: 45px;
-            background: rgba(255,255,255,0.1);
+            background: linear-gradient(135deg, var(--primary-blue), var(--metallic-blue));
             border-radius: 50%;
             text-align: center;
             line-height: 45px;
@@ -497,16 +521,26 @@
         }
 
         .social-links a:hover {
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
             transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
             margin-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
             color: rgba(255,255,255,0.6);
+        }
+
+        .footer-bottom a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--light-gold);
         }
 
         .contact-info {
@@ -522,7 +556,7 @@
         }
 
         .contact-info li i {
-            color: var(--accent-color);
+            color: var(--gold);
             margin-right: 12px;
             margin-top: 3px;
             font-size: 1.1rem;
@@ -535,7 +569,7 @@
             right: 30px;
             width: 65px;
             height: 65px;
-            background: #25D366;
+            background: linear-gradient(135deg, #25D366, #128C7E);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -558,6 +592,16 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .navbar-logo-img {
+                height: 35px;
+                margin-right: 10px;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -590,34 +634,37 @@
             .whatsapp-button i {
                 font-size: 1.8rem;
             }
-
-            .contact-form {
-                padding: 30px 20px;
-            }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">SIUL CAPITAL</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#inicio">
+                <img src="static/icon_siul_capital.png" alt="Siul Capital Logo" class="navbar-logo-img">
+                        SIUL CAPITAL
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#inicio">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="#clientes">Clientes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
-                    <li class="nav-item">
-                        <span class="navbar-phone">
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto <span class="navbar-phone">
                             <i class="fas fa-phone-alt"></i> +56 9 90850694
-                        </span>
+                        </span></a>
                     </li>
                 </ul>
+            </div>
             </div>
         </div>
     </nav>
@@ -625,6 +672,7 @@
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="container hero-content">
+            <br>
             <h1>Estrategia y Gestión Integral en <span>Licitaciones</span></h1>
             <p>Acompañamos a tu empresa en todas las etapas de licitaciones públicas y privadas. Ofrecemos planificación estratégica, preparación de propuestas sólidas y gestión eficiente, asegurando cumplimiento normativo y resultados medibles.</p>
             <div>
@@ -641,7 +689,7 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="feature-box">
                         <div class="feature-icon">
-                            <i class="fas fa-bullseye" style="font-size: 2rem; color: white;"></i>
+                            <i class="fas fa-bullseye" style="font-size: 2rem;"></i>
                         </div>
                         <h4>Licitaciones Estratégicas</h4>
                         <p>Guiamos empresas para obtener resultados exitosos en cada licitación.</p>
@@ -650,7 +698,7 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="feature-box">
                         <div class="feature-icon">
-                            <i class="fas fa-tasks" style="font-size: 2rem; color: white;"></i>
+                            <i class="fas fa-tasks" style="font-size: 2rem;"></i>
                         </div>
                         <h4>Gestión Licitatoria</h4>
                         <p>Coordinamos cada etapa del proceso, optimizando tiempo y recursos eficientemente.</p>
@@ -659,7 +707,7 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="feature-box">
                         <div class="feature-icon">
-                            <i class="fas fa-lightbulb" style="font-size: 2rem; color: white;"></i>
+                            <i class="fas fa-lightbulb" style="font-size: 2rem;"></i>
                         </div>
                         <h4>Propuestas Competitivas</h4>
                         <p>Creamos ofertas técnicas y económicas sólidas, cumpliendo todas las bases.</p>
@@ -668,7 +716,7 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="feature-box">
                         <div class="feature-icon">
-                            <i class="fas fa-chart-line" style="font-size: 2rem; color: white;"></i>
+                            <i class="fas fa-chart-line" style="font-size: 2rem;"></i>
                         </div>
                         <h4>Asesoría Profesional</h4>
                         <p>Gestionamos licitaciones públicas y privadas con resultados medibles.</p>
@@ -687,7 +735,7 @@
             </div>
             <div class="about-content">
                 <p>Acompañamos a tu empresa en todo el proceso de licitación, desde la identificación de oportunidades hasta la post-licitación. Nuestra asesoría asegura propuestas competitivas, cumplimiento normativo y resultados medibles, optimizando tus recursos y potenciando el crecimiento de tu negocio.</p>
-                <p>En Chatnell, nos especializamos en brindar servicios integrales de gestión y asesoría en licitaciones públicas y privadas. Contamos con un equipo de profesionales altamente capacitados que conocen a fondo los procesos licitatorios y las exigencias del mercado.</p>
+                <p>En Siul Capital, nos especializamos en brindar servicios integrales de gestión y asesoría en licitaciones públicas y privadas. Contamos con un equipo de profesionales altamente capacitados que conocen a fondo los procesos licitatorios y las exigencias del mercado.</p>
                 <ul class="about-list">
                     <li>Maximizamos oportunidades con gestión eficiente licitatoria</li>
                     <li>Asesoramos empresas para propuestas competitivas exitosas</li>
@@ -790,7 +838,21 @@
                     </div>
                     
                     <!-- Duplicados para animación continua -->
-                    
+                    <div class="client-logo">
+                        <img src="static/asmar.png" alt="ASMAR">
+                    </div>
+                    <div class="client-logo">
+                        <img src="static/mercado_publico.jpg" alt="Cliente 2">
+                    </div>
+                    <div class="client-logo">
+                        <img src="static/sap.png" alt="Cliente 3">
+                    </div>
+                    <div class="client-logo">
+                        <img src="static/senegocia.png" alt="WherEx">
+                    </div>
+                    <div class="client-logo">
+                        <img src="static/wherex.png" alt="SAP">
+                    </div>
                 </div>
             </div>
         </div>
@@ -804,7 +866,8 @@
                 <h2>Asesoría y Gestión Profesional de Licitaciones</h2>
                 <p>Guiamos tu empresa en licitaciones, asegurando propuestas competitivas, cumplimiento normativo y resultados medibles</p>
             </div>
-        </section>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -812,8 +875,8 @@
             <div class="row">
                 <!-- Logo Section -->
                 <div class="col-lg-3 col-md-6 footer-section">
-                    <div class="footer-logo">Siul Capital</div>
-                    <p class="footer-text">Asesoramos y gestionamos licitaciones públicas y privadas, optimizando procesos, reduciendo riesgos y asegurando propuestas competitivas.</p>
+                    <img style="filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));" src="static/icon_siul_capital.png" width="200px" height="200px">
+                   
                 </div>
 
                 <!-- Services Section -->
@@ -854,7 +917,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Siul Capital SpA. Todos los derechos reservados. | Desarrolado por <a href="https://www.jbenavil.com">JBenAvil SpA</a></p>
+                <p>&copy; 2025 Siul Capital SpA. Todos los derechos reservados. | Desarrollado por <a href="https://www.jbenavil.com">JBenAvil SpA</a></p>
             </div>
         </div>
     </footer>
@@ -893,9 +956,9 @@
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
+                navbar.style.boxShadow = '0 4px 20px rgba(212, 175, 55, 0.3)';
             } else {
-                navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+                navbar.style.boxShadow = '0 2px 15px rgba(212, 175, 55, 0.3)';
             }
         });
     </script>

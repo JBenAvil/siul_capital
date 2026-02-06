@@ -3,7 +3,7 @@
 // Configuración
 const WHATSAPP_CONFIG = {
     // Cambia este número por el tuyo (formato internacional sin +, espacios ni guiones)
-    phoneNumber: '56912345678', // Ejemplo: Chile +56 9 1234 5678
+    phoneNumber: '56990850694', // Ejemplo: Chile +56 9 1234 5678
     message: 'Quiero solicitar sus servicios'
 };
 
